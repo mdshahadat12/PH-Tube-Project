@@ -64,7 +64,7 @@ const showcard = async (id) => {
                         <h3>${a.authors[0].profile_name}</h3>
                         ${a.authors[0].verified? '<img src="./Image/fi_10629607.png"></img>' : ""}
                     </div>
-                    <p>${a.others.views}views</p>
+                    <p>${a.others.views} Views</p>
                 </div>
             </div>
         `
@@ -107,7 +107,7 @@ const showcard = async (id) => {
                     <h3>${a.authors[0].profile_name}</h3>
                     ${a.authors[0].verified? '<img src="./Image/fi_10629607.png"></img>' : ""}
                 </div>
-                <p>${a.others.views}views</p>
+                <p>${a.others.views} Views</p>
             </div>
         </div>
     `
