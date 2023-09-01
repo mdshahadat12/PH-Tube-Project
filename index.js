@@ -14,12 +14,7 @@ const showCatagory = async () => {
         tapContent.appendChild(a);
     });
 }
-
-function sortBtn (){
-    return 'click';
-}
-
-
+// default Category Show
 showCatagory();
 
 // Main body section Function
@@ -27,15 +22,57 @@ const showcard = async (id) => {
     const res = await fetch(`https://openapi.programming-hero.com/api/videos/category/${id}`);
     const data = await res.json();
     const card = data.data;
-    // console.log(data)
-
-    // if(sortBtn() === 'click'){
-    //     card1.sort((a,b) =>parseInt(b.others.views) - parseInt(a.others.views));
-    // }
-
+    
     const cardContainer = document.getElementById('cardContainer');
+
+    // When sort button clicked
+    document.getElementById('sortBtn').addEventListener('click', async () => {
+
+        card.sort((a,b) =>parseInt(b.others.views) - parseInt(a.others.views));
+        cardContainer.innerHTML = "";
+        
+        if(card.length == 0){
+            cardContainer.classList.remove('md:grid-cols-2', 'lg:grid-cols-4')
+            cardContainer.classList.add('justify-center')
+            const div = document.createElement('div');
+            div.innerHTML = `
+            <div class="text-center w-full mx-auto mt-14">
+            <img class="mx-auto"src="./image/icon.png">
+            <h1 class="text-2xl font-bold">Oops!! Sorry, There is no <br/> content here</h1>
+            </div>
+            `
+            cardContainer.appendChild(div);
+        }
+    
+        card.forEach(a => {
+            cardContainer.classList.add('md:grid-cols-2', 'lg:grid-cols-4')
+            const div = document.createElement('div');
+        div.innerHTML = `
+             <div>
+                <div class="relative">
+                <img class="mb-5 rounded-lg h-44 w-full" src=${a.thumbnail}>
+              <h3 class="bg-[#171717] absolute text-sm bottom-4 right-1 px-2 text-white rounded-lg"> ${secondsToHms(a.others.posted_date)}</h3>
+                </div>
+                </div>
+                    <div class="flex gap-2">
+                        <div>
+                            <img class="rounded-full h-[40px] w-[40px]"src=${a.authors[0].profile_picture}>
+                        </div>
+                    <div>
+                        <h2 class="text-lg font-bold">${a.title}</h2>
+                    <div class="flex gap-2 items-center my-2">
+                        <h3>${a.authors[0].profile_name}</h3>
+                        ${a.authors[0].verified? '<img src="./Image/fi_10629607.png"></img>' : ""}
+                    </div>
+                    <p>${a.others.views}views</p>
+                </div>
+            </div>
+        `
+        cardContainer.appendChild(div);
+        });
+    })
+
     cardContainer.innerHTML = "";
-    // console.log(card.length)
     
     if(card.length == 0){
         cardContainer.classList.remove('md:grid-cols-2', 'lg:grid-cols-4')
@@ -62,7 +99,7 @@ const showcard = async (id) => {
             </div>
                 <div class="flex gap-2">
                     <div>
-                        <img class="rounded-full h-[45px] w-[45px]"src=${a.authors[0].profile_picture}>
+                        <img class="rounded-full h-[40px] w-[40px]"src=${a.authors[0].profile_picture}>
                     </div>
                 <div>
                     <h2 class="text-lg font-bold">${a.title}</h2>
@@ -77,6 +114,7 @@ const showcard = async (id) => {
     cardContainer.appendChild(div);
     });  
 }
+
 // default all show
 showcard('1000');
 
