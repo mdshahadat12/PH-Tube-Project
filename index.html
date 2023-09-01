@@ -11,92 +11,26 @@
 </head>
 <body>
     <header class="container w-[90%] mx-auto">
+
+        <!-- navbar section -->
         <nav class="flex justify-between my-6">
             <div>
                 <img src="./Image/Logo.png" alt="">
             </div>
-            <button class="btn active:bg-[#FF1F3D] bg-[#19191926] active:text-white md:mr-28 lg:mr-28">Sort by view</button>
+            <button onclick="sortBtn()" id="sortBtn" class="btn active:bg-[#FF1F3D] bg-[#19191926] active:text-white md:mr-28 lg:mr-28">Sort by view</button>
             <button class="btn hover:bg-[#ff1f3d93] bg-[#FF1F3D] text-white">Blog</button>
         </nav>
         <hr>
+        <!-- catagory option -->
         <section class="my-5">
             <div id="tapContent"  class="tabs tabs-boxed gap-4 justify-center">
             </div>
         </section>
     </header>
+    <!-- main body or card -->
     <main>
         <div class="container w-[90%] mx-auto grid md:grid-cols-2 lg:grid-cols-4 gap-4" id="cardContainer">
-          <!-- <div>
-            <img class="mb-5 rounded-lg " src="https://i.ibb.co/L1b6xSq/shape.jpg" alt="">
-          <h3 class="bg-[#171717] absolute text-sm -mt-16 ml-2  px-4 py-1 text-white rounded-lg">3hrs 56 min ago</h3>
-          </div>
-            <div class="flex gap-2">
-                <div>
-                    <img class="rounded-full" height="50px" width="50px" src="https://i.ibb.co/D9wWRM6/olivia.jpg" alt="">
-                </div>
-                <div>
-                    <h2 class="text-lg font-bold">Building a Winning UX Strategy Using the Kano Model</h2>
-            
-                <div class="flex gap-2 items-center my-2">
-                    <h3>Awlad Hossain</h3>
-                    <img src="./Image/fi_10629607.png" alt="">
-            </div>
-            <p>91K views</p>
-            </div>
-        </div> -->
         </div>
-        <!-- <div>
-            <img class="mb-5 rounded-lg" src="https://i.ibb.co/L1b6xSq/shape.jpg" alt="">
-            
-            <div class="flex gap-2">
-                <div>
-                    <img class="rounded-full" height="50px" width="50px" src="https://i.ibb.co/D9wWRM6/olivia.jpg" alt="">
-                </div>
-                <div>
-                    <h2 class="text-lg font-bold">Building a Winning UX Strategy Using the Kano Model</h2>
-            
-                <div class="flex gap-2 items-center my-2">
-                    <h3>Awlad Hossain</h3>
-                    <img src="./Image/fi_10629607.png" alt="">
-            </div>
-            <p>91K views</p>
-            </div>
-        </div>
-        </div>
-        <div>
-            <img class="mb-5 rounded-lg" src="https://i.ibb.co/L1b6xSq/shape.jpg" alt="">
-            <div class="flex gap-2">
-                <div>
-                    <img class="rounded-full" height="50px" width="50px" src="https://i.ibb.co/D9wWRM6/olivia.jpg" alt="">
-                </div>
-                <div>
-                    <h2 class="text-lg font-bold">Building a Winning UX Strategy Using the Kano Model</h2>
-            
-                <div class="flex gap-2 items-center my-2">
-                    <h3>Awlad Hossain</h3>
-                    <img src="./Image/fi_10629607.png" alt="">
-            </div>
-            <p>91K views</p>
-            </div>
-        </div>
-        </div>
-        <div>
-            <img class="mb-5 rounded-lg" src="https://i.ibb.co/L1b6xSq/shape.jpg" alt="">
-            <div class="flex gap-2">
-                <div>
-                    <img class="rounded-full" height="50px" width="50px" src="https://i.ibb.co/D9wWRM6/olivia.jpg" alt="">
-                </div>
-                <div>
-                    <h2 class="text-lg font-bold">Building a Winning UX Strategy Using the Kano Model</h2>
-            
-                <div class="flex gap-2 items-center my-2">
-                    <h3>Awlad Hossain</h3>
-                    <img src="./Image/fi_10629607.png" alt="">
-            </div>
-            <p>91K views</p>
-            </div>
-        </div>
-        </div> -->
     </main>
     <script src="./index.js"></script>
 </body>

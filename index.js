@@ -1,12 +1,13 @@
+// category option Function
 const showCatagory = async () => {
     const res = await fetch('https://openapi.programming-hero.com/api/videos/categories');
     const data = await res.json();
     const cata = data.data;
-    // console.log(cata)
+    // console.log(data)
+
     const tapContent = document.getElementById('tapContent');
     cata.forEach(c => {
         const a = document.createElement('a')
-        // a.classList.add('tab','active:bg-[#FF1F3D]', 'bg-[#19191926]','active:text-white','btn')
         a.innerHTML = `
                 <a onclick="showcard('${c.category_id}')" class="tab active:bg-[#FF1F3D] bg-[#19191926] active:text-white btn">${c.category}</a>
         `
@@ -14,23 +15,48 @@ const showCatagory = async () => {
     });
 }
 
+function sortBtn (){
+    return 'click';
+}
+
+
 showCatagory();
 
+// Main body section Function
 const showcard = async (id) => {
     const res = await fetch(`https://openapi.programming-hero.com/api/videos/category/${id}`);
     const data = await res.json();
     const card = data.data;
-    console.log(data)
+    // console.log(data)
+
+    // if(sortBtn() === 'click'){
+    //     card1.sort((a,b) =>parseInt(b.others.views) - parseInt(a.others.views));
+    // }
 
     const cardContainer = document.getElementById('cardContainer');
     cardContainer.innerHTML = "";
-    card.forEach(a => {
+    // console.log(card.length)
+    
+    if(card.length == 0){
+        cardContainer.classList.remove('md:grid-cols-2', 'lg:grid-cols-4')
+        cardContainer.classList.add('justify-center')
+        const div = document.createElement('div');
+        div.innerHTML = `
+        <div class="text-center w-full mx-auto mt-14">
+        <img class="mx-auto"src="./image/icon.png">
+        <h1 class="text-2xl font-bold">Oops!! Sorry, There is no <br/> content here</h1>
+        </div>
+        `
+        cardContainer.appendChild(div);
+    }
 
-        const div = document.createElement('div')
+    card.forEach(a => {
+        cardContainer.classList.add('md:grid-cols-2', 'lg:grid-cols-4')
+        const div = document.createElement('div');
     div.innerHTML = `
          <div>
             <div class="relative">
-            <img class="mb-5 rounded-lg h-44 w-80" src=${a.thumbnail}>
+            <img class="mb-5 rounded-lg h-44 w-full" src=${a.thumbnail}>
           <h3 class="bg-[#171717] absolute text-sm bottom-4 right-1 px-2 text-white rounded-lg"> ${secondsToHms(a.others.posted_date)}</h3>
             </div>
             </div>
@@ -49,24 +75,21 @@ const showcard = async (id) => {
         </div>
     `
     cardContainer.appendChild(div);
-        
-    });
-
-
-    
+    });  
 }
-
+// default all show
 showcard('1000');
 
+// second to hrs and min
 function secondsToHms(d) {
     if(d == ""){
         return '';
     }
     d = parseInt(d);
-    let h = Math.floor(d / 3600);
-    let m = Math.floor(d % 3600 / 60);
+    const h = Math.floor(d / 3600);
+    const m = Math.floor(d % 3600 / 60);
 
-    let hDisplay = h > 0 ? h + " hrs " : "";
-    let mDisplay = m > 0 ? m + " min " : "";
+    const hDisplay = h > 0 ? h + " hrs " : "";
+    const mDisplay = m > 0 ? m + " min " : "";
     return hDisplay + mDisplay + "ago"; 
 }
